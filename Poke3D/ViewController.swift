@@ -71,6 +71,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         planeNode.eulerAngles.x = -.pi / 2
         
+        //terminal -> xcrun usdz_converter /Users/konstantin/Downloads/Eevee/eevee.obj /Users/konstantin/Downloads/eevee.usdz
+        
         return node
         
     }
