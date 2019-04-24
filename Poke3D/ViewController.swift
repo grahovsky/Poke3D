@@ -37,7 +37,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let imageToTrack = ARReferenceImage.referenceImages(inGroupNamed: "Pokemon Cards", bundle: Bundle.main) {
             
             configuration.trackingImages = imageToTrack
-            configuration.maximumNumberOfTrackedImages = 1
+            configuration.maximumNumberOfTrackedImages = 2
             
             print("Images Successfully Added")
             
@@ -75,10 +75,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         //terminal -> xcrun usdz_converter /Users/konstantin/Downloads/Eevee/eevee.obj /Users/konstantin/Downloads/eevee.usdz
         
-        if let pokeScene = SCNScene(named: "art.scnassets/eevee.scn") {
-            if let pokeNode = pokeScene.rootNode.childNodes.first {
-                pokeNode.eulerAngles.x = .pi / 2
-                planeNode.addChildNode(pokeNode)
+        if let imageName = imageAnchor.referenceImage.name {
+            
+            let scnName = imageName.replacingOccurrences(of: "-card", with: "")
+            
+            if let pokeScene = SCNScene(named: "art.scnassets/\(scnName).scn") {
+                if let pokeNode = pokeScene.rootNode.childNodes.first {
+                    pokeNode.eulerAngles.x = .pi / 2
+                    planeNode.addChildNode(pokeNode)
+                }
             }
         }
         
